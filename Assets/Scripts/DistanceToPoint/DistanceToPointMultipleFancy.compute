@@ -1,0 +1,47 @@
+﻿#pragma kernel CSMain
+
+float4 colourOn;
+float4 colourOff;
+
+StructuredBuffer<float4> data;
+RWTexture2D<float4> Result;
+
+int resultMode;
+
+
+[numthreads(1, 1, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    uint dataCount, width, _;
+    data.GetDimensions(dataCount, _);
+    Result.GetDimensions(width, _);
+    
+    float tMax = 0.0f; float tMax2 = 0.0f;
+    float tMin = 1.0f;
+    float tMult = 1.0f;
+    float tAdd = 0.0f;
+    float tSteps = 0.0f;
+    float results[5];
+    for (uint i = 0; i < dataCount; i++)
+    {
+        float4 position = data[i];
+        float dist = distance(id.xyz, position.xyz);
+        float t = saturate(1.0f - dist / position.w);
+        tMax = max(t, tMax);
+        tMin = min(t, tMin);
+        tAdd += t;
+        tMult *= t;
+        tSteps += t * 5.0f;
+
+    }
+    results[0] = tMax;
+    results[1] = tMin;
+    results[2] = tMult;
+    results[3] = tAdd;
+    results[4] = ceil(tSteps) / 5.0f;
+    
+    float resultT = results[resultMode];
+    Result[id.xy] = lerp(colourOff, colourOn, saturate(resultT));
+}
+
+
