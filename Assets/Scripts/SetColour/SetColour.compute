@@ -1,4 +1,5 @@
-﻿#pragma kernel CSMain
+﻿#pragma enable_d3d11_debug_symbols
+#pragma kernel CSMain
 
 
 float4 Colour;

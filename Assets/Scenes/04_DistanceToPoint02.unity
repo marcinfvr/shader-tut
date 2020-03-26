@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19979206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 723, y: 534, z: 90}
+  m_LocalPosition: {x: 596, y: 423, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_KernelName: CSMain
-  m_Shader: {fileID: 7200000, guid: 2b88b663e1878b0489f3e9a45ebcee42, type: 3}
+  m_Shader: {fileID: 7200000, guid: 4e9ed08169c85654c9790a1cf8c2b0c7, type: 3}
   m_TextureSize: {x: 1920, y: 1080}
   m_Radius: 571
   m_ColourOn: {r: 0.40583837, g: 0.41437525, b: 0.9056604, a: 0}
@@ -652,7 +652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022986603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1193, y: 471, z: 90}
+  m_LocalPosition: {x: 1225, y: 243, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

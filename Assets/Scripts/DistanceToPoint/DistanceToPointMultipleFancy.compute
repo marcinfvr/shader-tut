@@ -1,20 +1,25 @@
-﻿#pragma kernel CSMain
+﻿#pragma enable_d3d11_debug_symbols
+#pragma kernel CSMain
+
+struct Point
+{
+    float3 position;
+    float radius;
+};
 
 float4 colourOn;
 float4 colourOff;
 
-StructuredBuffer<float4> data;
+StructuredBuffer<Point> data;
 RWTexture2D<float4> Result;
 
 int resultMode;
 
-
 [numthreads(1, 1, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    uint dataCount, width, _;
+    uint dataCount, _;
     data.GetDimensions(dataCount, _);
-    Result.GetDimensions(width, _);
     
     float tMax = 0.0f; float tMax2 = 0.0f;
     float tMin = 1.0f;
@@ -24,9 +29,9 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     float results[5];
     for (uint i = 0; i < dataCount; i++)
     {
-        float4 position = data[i];
-        float dist = distance(id.xyz, position.xyz);
-        float t = saturate(1.0f - dist / position.w);
+        Point pt = data[i];
+        float dist = distance(id.xyz, pt.position);
+        float t = saturate(1.0f - dist / pt.radius);
         tMax = max(t, tMax);
         tMin = min(t, tMin);
         tAdd += t;
